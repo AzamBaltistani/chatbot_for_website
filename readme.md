@@ -38,14 +38,29 @@ pip install -r requirements.txt
 chatbot_for_website/
 ├── ArticleSite/
 │   ├── articles/
+│   │   ├── migrations/
 │   │   ├── templates/
 │   │   │   ├── articles/
 │   │   │   │   └── article.html
+│   │   ├── admin.py
+│   │   ├── apps.py
 │   │   ├── data.json            # Articles data file
-│   │   ├── views.py             # Backend logic
+│   │   ├── models.py
+│   │   ├── tests.py
 │   │   ├── urls.py              # URL routes
-│   ├── settings.py              # Django settings
+│   │   ├── views.py             # Backend logic
+│   │   
+│   ├── ArticleSite/
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │
+│   ├── db.sqlite3               # For Database (not used in this project)
 │   ├── manage.py                # Django command-line utility
-├── requirements.txt              # Dependencies
+├── requirements.txt             # Dependencies
+├── readme.md                    # readme file
+
 
 ```
