@@ -27,3 +27,26 @@ pip install -r requirements.txt
 
 1. `cd ArticleSite`
 2. `python manage.py runserver`
+3. Open your browser and navigate to: `http://127.0.0.1:8000/article/1/`
+4. Note: The main page will show nothing at this moment
+
+### 6. File Structure
+
+[view in full screen mode]
+
+```NaN
+chatbot_for_website/
+├── ArticleSite/
+│   ├── articles/
+│   │   ├── templates/
+│   │   │   ├── articles/
+│   │   │   │   └── article.html
+│   │   ├── data.json            # Articles data file
+│   │   ├── views.py             # Backend logic
+│   │   ├── urls.py              # URL routes
+│   ├── settings.py              # Django settings
+│   ├── manage.py                # Django command-line utility
+├── .env                          # API key (hidden file)
+├── requirements.txt              # Dependencies
+
+```
