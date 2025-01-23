@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }}</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .chatbot {
+            flex: 1;
+            border-left: 2px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+    </div>
+    <div class="chatbot">
+        <h2>Chatbot</h2>
+        <div id="chat-box" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;"></div>
+        <input type="text" id="chat-input" placeholder="Ask something..." style="width: 100%; padding: 10px;">
+        <button id="send-btn" style="width: 100%; padding: 10px;">Send</button>
+    </div>
+    
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.getElementById('send-btn').addEventListener('click', function() {
+            const input = document.getElementById('chat-input').value;
+            const chatBox = document.getElementById('chat-box');
+            const articleId = "{{ article.id }}"; // Pass the article ID dynamically
+        
+            if (input.trim()) {
+                chatBox.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+                document.getElementById('chat-input').value = '';
+        
+                // Send request to backend with user input and article ID
+                fetch('/chatbot/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    },
+                    body: JSON.stringify({ message: input, article_id: articleId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(error => {
+                    chatBox.innerHTML += `<p><strong>Bot:</strong> Sorry, an error occurred</p>`;
+                });
+            }
+        });        
+        
+        
+    </script>
+    
+</body>
+
+</html>

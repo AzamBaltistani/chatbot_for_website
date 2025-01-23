@@ -1,0 +1,14 @@
+{
+    "articles": [
+        {
+            "id": 1,
+            "title": "My details",
+            "content": "I am sikander, My department is Information and Communication engineering, I am in 7th semester, my Roll Number is F21BINCE1M04039"
+        },
+        {
+            "id": 2,
+            "title": "Understanding Django",
+            "content": "Django is a high-level Python web framework that encourages rapid development..."
+        }
+    ]
+}
