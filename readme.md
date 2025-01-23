@@ -46,7 +46,6 @@ chatbot_for_website/
 │   │   ├── urls.py              # URL routes
 │   ├── settings.py              # Django settings
 │   ├── manage.py                # Django command-line utility
-├── .env                          # API key (hidden file)
 ├── requirements.txt              # Dependencies
 
 ```
